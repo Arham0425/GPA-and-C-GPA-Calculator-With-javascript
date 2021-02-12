@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Demo CGPA calculator</title>
+      <meta name="generator" content="Bluefish 2.2.7" >
+      <meta name="author " content="Ajeh Emeke" >
+      <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+      <meta http-equiv="content-style-type" content="text/css">
+      <meta http-equiv="expires" content="0">
+      <link href="" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <div id="header">
+         <h1>JAVASCRIPT CGPA AND GPA CALCULATOR</h1>
+      </div>
+      <div id="cont">
+         <form>
+            <fieldset>
+            </fieldset>
+         </form>
+         <form id="courseform">
+            <fieldset id="radiobtn">
+               <label>CGPA OR GPA TYPE:</label>	
+               <label><input type="radio" name="action" value="4" id="radioOne"/> 4 POINT</label>
+               <label><input type="radio" name="action" value="5" id="radioTwo"/> 5 POINT</label>
+            </fieldset>
+            <fieldset><label>How many courses did you offer?<input type="text" id="courses" name="box" placeholder="Enter a number of courses" /></label></fieldset>
+            <legend id="boxes"> </legend>
+            <fieldset>
+               <input type="reset" value="CLEAR" id="clear" />
+               <input type="submit" name="submitquery" value="PROCEED" id="calculate" />
+            </fieldset>
+         </form>
+         <div class="result">
+            <p id="totalMark">Total Marks: <br> Average: </p>
+            <p id="grade">GRADE: <br> gpa or cgpa: </p>
+         </div>
+      </div>
+
+
+      <script src="app.js"></script>
+   </body>
+</html>
