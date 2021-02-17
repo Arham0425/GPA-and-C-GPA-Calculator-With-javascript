@@ -110,23 +110,23 @@ const fourPoint = (sum, empty) => {
     let averagePoint = countTotalPoint / Number(totalCourses.value);
 
     if (averagePoint >= 2 && averagePoint < 2.25) {
-        return `Your grade is: D <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: D <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position: 3rd Class`;
     } else if (averagePoint >= 2.25 && averagePoint < 2.5) {
-        return `Your grade is: C <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: C <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position: 2nd Class`;
     } else if (averagePoint >= 2.5 && averagePoint < 2.75) {
-        return `Your grade is: C+ <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: C+ <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position:  2nd Class`;
     } else if (averagePoint >= 2.75 && averagePoint < 3.00) {
-        return `Your grade is: B- <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: B- <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position:  2nd Class`;
     } else if (averagePoint >= 3.00 && averagePoint < 3.25) {
-        return `Your grade is: B <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: B <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position:  1st Class`;
     } else if (averagePoint >= 3.25 && averagePoint < 3.50) {
-        return `Your grade is: B+ <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: B+ <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position:  1st Class`;
     } else if (averagePoint >= 3.50 && averagePoint < 3.75) {
-        return `Your grade is: A- <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: A- <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position:  1st Class`;
     } else if (averagePoint >= 3.75 && averagePoint < 4.00) {
-        return `Your grade is: A <br> and Your CGPA is: ${averagePoint.toFixed(2)}`;
+        return `Your grade is: A <br> Your CGPA is: ${averagePoint.toFixed(2)} <br> Position:  1st Class`;
     } else if (averagePoint >= 4) {
-        return `Your grade is: A+ <br> and Your CGPA is: 4`;
+        return `Your grade is: A+ <br> Your CGPA is: 4 <br> Position:  1st Class`;
     }
 
 }
@@ -182,7 +182,7 @@ const removeItem = (e) => {
     e.preventDefault()
 
     totalMarks.innerHTML = 'Total Marks: <br> Average:';
-    grade.innerHTML = 'GRADE: <br> gpa or cgpa: ';
+    grade.innerHTML = 'GRADE: <br> gpa or cgpa: <br> Position: ';
     radioBtnOne.checked = false;
     radioBtnTwo.checked = false;
     // when click the clear button then value of the sum and countTotalPoint will be zero 
