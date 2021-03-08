@@ -1,5 +1,4 @@
 // selected all item
-
 const totalCourses = document.getElementById('courses');
 const boxes = document.getElementById('boxes');
 const clearBtn = document.getElementById('clear');
@@ -11,7 +10,8 @@ const radioBtnTwo = document.getElementById('radioTwo');
 let sum = 0;
 let empty = [];
 let countTotalPoint = 0;
-// let firstField = document.getElementById('firstField');
+let fourGradeArray = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'D'];
+let fiveGradeArray = ['A+', 'A', 'A-', 'B', 'C', 'D'];
 
 
 // created a function which add item when user's provide some subject number
@@ -19,14 +19,14 @@ let countTotalPoint = 0;
 const addItem = (e) => {
     e.preventDefault()
     for (let i = 1; i <= Number(totalCourses.value); i++) {
-        
+
         let fieldset = document.createElement('fieldset');
         let label = document.createElement('label');
-        label.innerHTML = 'SCORE(max 100): '
+        label.innerHTML = 'Grade: '
         let input = document.createElement('input');
         input.setAttribute('type', 'text')
         // when user's provide number of courses then make some classes in the input tag to access the user's subject marks
-        input.setAttribute('class', 'class' + i);      
+        input.setAttribute('class', 'class' + i);
         fieldset.appendChild(label)
         fieldset.appendChild(input)
 
@@ -41,65 +41,63 @@ const mainFunction = (e) => {
     e.preventDefault()
     if (totalCourses.value) {
         for (let i = 1; i <= Number(totalCourses.value); i++) {
-            const allClass = document.querySelector('.class' + i);            // I have accessed the new all classes
-            sum += Number(allClass.value);
-            empty.push(Number(allClass.value))
+            const allClass = document.querySelector('.class' + i); // I have accessed the new all classes
+            empty.push((allClass.value).toUpperCase())
+            console.log(empty)
         }
 
-        grade.innerHTML = permission(empty, sum);
+        grade.innerHTML = permission(empty);
     } else {
         alert('Provide some value.')
     }
 }
 
 // this is permission function which handle the all unnecessary input and return proper output. 
-const permission = (empty, sum) => {
+const permission = (empty) => {
     for (let i = 0; i < empty.length; i++) {
-        if (empty[i] > 100 || empty[i] < 0) { 
-            return 'Invalid value.'
-        } else if (empty[i] == '') {
-            return 'Provide some value in the input field below.';
+        if (empty[i] == '') {
+            return 'Please Provide value in the input field.'
         } else if (!radioBtnOne.checked && !radioBtnTwo.checked) {
             return 'Please select the radio button.';
-        } else if (empty[i] < 33) {
-            return 'You are failed'
         } else if (radioBtnOne.checked) {
-            if(empty[i] < 40) {
-                return 'You are failed'
-            } else {
-                return fourPoint(sum, empty);
+            if (fourGradeArray.includes(empty[i])) {
+                return fourPoint(empty);
+            } else if (!fourGradeArray.includes(empty[i])) {
+                return "Please provide valid value"
             }
         } else {
-            return fivePoint(sum, empty);
+            if (fiveGradeArray.includes(empty[i])) {
+                return fivePoint(empty);
+            } else if (!fiveGradeArray.includes(empty[i])) {
+                return "Please provide valid value"
+            }
         }
     }
-    
+
 }
 
 // created a function which return cgpa value 
 // it will be run when user click the 1st radio button
-const fourPoint = (sum, empty) => {
-    const average = (sum / Number(totalCourses.value));
-    totalMarks.innerHTML = `TOTAL MARKS: ${sum} <br> AND AVERAGE: ${average.toFixed(2)}`
+const fourPoint = (empty) => {
     // created a loop which check the all subject marks and count the point
     for (let i = 0; i < empty.length; i++) {
-        if (empty[i] >= 40 && empty[i] < 45) {
+        if (empty[i] === 'D') {
             countTotalPoint += 2;
-        } else if (empty[i] >= 45 && empty[i] < 50) {
+        } else if (empty[i] === 'C') {
             countTotalPoint += 2.25;
-        } else if (empty[i] >= 50 && empty[i] < 55) {
+        } else if (empty[i] === 'C+') {
             countTotalPoint += 2.50;
-        } else if (empty[i] >= 55 && empty[i] < 60) {
+        } else if (empty[i] === 'B-') {
             countTotalPoint += 2.75;
-        } else if (empty[i] >= 60 && empty[i] < 65) {
+        } else if (empty[i] === 'B') {
             countTotalPoint += 3;
-        } else if (empty[i] >= 65 && empty[i] < 70) {
+        } else if (empty[i] === 'B+') {
             countTotalPoint += 3.25;
-        } else if (empty[i] >= 70 && empty[i] < 75) {
+        } else if (empty[i] === 'A-') {
             countTotalPoint += 3.50;
-        } else if (empty[i] >= 75 && empty[i] < 80) {
+        } else if (empty[i] === 'A') {
             countTotalPoint += 3.75;
-        } else if (empty[i] >= 80 && empty[i] <= 100) {
+        } else if (empty[i] === 'A+') {
             countTotalPoint += 4;
         }
     }
@@ -133,22 +131,20 @@ const fourPoint = (sum, empty) => {
 
 // created a function which return gpa value
 // it will be run when user click the second radio button 
-const fivePoint = (sum, empty) => {
-    const average = (sum / Number(totalCourses.value));
-    totalMarks.innerHTML = `TOTAL MARKS: ${sum} <br> AND AVERAGE: ${average.toFixed(2)}`
+const fivePoint = (empty) => {
     // created a loop which check the all subject marks and count the point
-    for (let i = 0; i < empty.length; i++){
-        if (empty[i] >= 33 && empty[i] < 40) {
+    for (let i = 0; i < empty.length; i++) {
+        if (empty[i] === 'D') {
             countTotalPoint += 1;
-        } else if (empty[i] >= 40 && empty[i] < 50) {
+        } else if (empty[i] === 'C') {
             countTotalPoint += 2;
-        } else if (empty[i] >= 50 && empty[i] < 60) {
+        } else if (empty[i] === 'B') {
             countTotalPoint += 3;
-        } else if (empty[i] >= 60 && empty[i] < 70) {
+        } else if (empty[i] === 'A-') {
             countTotalPoint += 3.5;
-        } else if (empty[i] >= 70 && empty[i] < 80) {
+        } else if (empty[i] === 'A') {
             countTotalPoint += 4;
-        } else if (empty[i] >= 80 && empty[i] <= 100) {
+        } else if (empty[i] === 'A+') {
             countTotalPoint += 5;
         }
     }
@@ -156,7 +152,6 @@ const fivePoint = (sum, empty) => {
     // countTotalPoint count the user's all point 
     // using this point program will return user's result
     let averagePoint = (countTotalPoint - 2) / ((Number(totalCourses.value)) - 1);
-    console.log(averagePoint)
 
     if (averagePoint >= 1 && averagePoint < 2) {
         return `Your grade is: D <br> and Your GPA is: ${averagePoint.toFixed(2)}`;
@@ -171,7 +166,7 @@ const fivePoint = (sum, empty) => {
     } else if (averagePoint >= 5) {
         return `Your grade is: A+ <br> and Your GPA is: 5`;
     }
-    
+
 }
 
 calculateBtn.addEventListener('click', mainFunction)
@@ -181,7 +176,6 @@ calculateBtn.addEventListener('click', mainFunction)
 const removeItem = (e) => {
     e.preventDefault()
 
-    totalMarks.innerHTML = 'Total Marks: <br> Average:';
     grade.innerHTML = 'GRADE: <br> gpa or cgpa: <br> Position: ';
     radioBtnOne.checked = false;
     radioBtnTwo.checked = false;
@@ -190,11 +184,12 @@ const removeItem = (e) => {
     sum = 0;
     empty = [];
     countTotalPoint = 0;
-    for (let j = 0; j < Number(totalCourses.value); j++){
-        boxes.removeChild(boxes.childNodes[j])
-    }
+    const fieldsets = document.querySelectorAll('#boxes fieldset');
+    fieldsets.forEach((fieldset) => {
+        fieldset.parentNode.removeChild(fieldset);
+    })
     totalCourses.value = '';
-    
+
 }
 
 clearBtn.addEventListener('click', removeItem);
